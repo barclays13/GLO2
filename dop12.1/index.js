@@ -1,6 +1,6 @@
 'use strict';
 let data = new Date ();
-
+let text = document.querySelector('.text');
 
 function dayPeriod (){
     if( data.getHours >= 0 && data.getHours < 4 ){
@@ -50,17 +50,14 @@ function weekday() {
 
 
 function Days(){
-
         return  Math.floor(( Date.parse('1 January 2020') - Date.now() ) / 86400000);
-
 }
 
-
-
-console.log(` 
+text.textContent = ` 
 ${dayPeriod ()}
 Сегодня: ${weekday()}
 Текущее время:${data.toLocaleTimeString('en')}  
-До нового года осталось ${Days()} дн.
+До нового года осталось ${Days()} дн.`
 
-`);
+
+

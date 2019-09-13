@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
             let timerHours = document.querySelector('#timer-hours'),
                 timerMinutes = document.querySelector('#timer-minutes'),
-                timerSeconds = document.querySelector('#timer-seconds');
+                timerSeconds = document.querySelector('#timer-seconds'),
+                timerNumbers = document.querySelector('.timer-numbers');
 
         function getTimeRemaining(){
             let dateStop = new Date (deadline).getTime(),
@@ -23,7 +24,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
         function updateClock(){
-            let timer = getTimeRemaining();
+
+                let timer = getTimeRemaining();
 
                 if(timer.hours >= 10){
 
@@ -31,7 +33,6 @@ window.addEventListener('DOMContentLoaded', function(){
                 } else {
                     timerHours.textContent = '0' + timer.hours;
                 }
-
 
                 if( timer.minutes >= 10 ){
                     
@@ -42,7 +43,6 @@ window.addEventListener('DOMContentLoaded', function(){
                     timerMinutes.textContent = '0' + timer.minutes;
                 }
 
-
                 if(  timer.seconds >= 10){
 
                     timerSeconds.textContent = timer.seconds;
@@ -51,18 +51,19 @@ window.addEventListener('DOMContentLoaded', function(){
                 }
 
 
+                // проверка на отрицательное время
                 if (timer.timeRemaining > 0){
                     
                     setInterval (updateClock, 1000);
-                } else {
-                    timerHours.textContent = "00";
-                    timerHours.style.color = 'red';
-                    timerMinutes.textContent = "00";
-                    timerMinutes.style.color = 'red';
-                    timerSeconds.textContent = "00";
-                    timerSeconds.style.color = 'red';
-                }
 
+                } else {
+
+                    timerHours.textContent = "00";
+                    timerMinutes.textContent = "00";
+                    timerSeconds.textContent = "00";
+                    timerNumbers.style.color = 'red';
+
+                }
 
         }
 
