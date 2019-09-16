@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    countTimer('12 September 2019');
+    countTimer('20 September 2019');
 
     //Menu
 
@@ -72,28 +72,33 @@ window.addEventListener('DOMContentLoaded', function () {
         const btnMenu = document.querySelector('.menu'),
             menu = document.querySelector('menu'),
             closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li');
+            menuItems = menu.querySelectorAll('ul>li'),
+            body = document.querySelector('body');
 
         const handlerMenu = () => {
             menu.classList.toggle('active-menu');
         };
+        
+        body.addEventListener('click',() => {
+                let target = event.target;
+
+                if (menu.classList.contains('active-menu')){ // клик мимо меню, оно закрывается
+                    target = target.closest('menu');
+                    if (!target){
+                        handlerMenu();
+                    }
+                    target = event.target;
+                } if (target.closest('.menu')){ //открываем меню
+                handlerMenu();
+                } if (target.classList.contains('close-btn')){ //закрываем меню на "крест"
+                    handlerMenu();
+                } 
+                
+            }
+        );
 
 
-        /*const handlerMenu = () => {
-           if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
-
-               menu.style.transform = `translate(0)`;
-
-           }else {
-
-               menu.style.transform = `translate(-100%)`;
-           }
-       };*/
-
-        btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
         menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
-
 
     };
 
