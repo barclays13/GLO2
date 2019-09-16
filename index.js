@@ -147,4 +147,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
     togglePopUp();
 
+     const tabs = () => {
+         const tabHeader = document.querySelector('.service-header'),
+            tabContent = document.querySelector('.service-tab'),
+            bat = tabHeader.querySelector('.service-header-tab');
+            
+            tabHeader.addEventListener('click', (event) => {
+                let target = event.target;
+                if (target.classList.contains('service-header-tab')){
+                    console.log('target.classList.contains service-header-tab', target.classList.contains('service-header-tab'));
+                    console.log(target);
+                }
+
+            });
+
+     };
+     tabs ();
 });
