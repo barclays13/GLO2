@@ -193,12 +193,29 @@ window.addEventListener('DOMContentLoaded', function () {
      const slider = () => {
         const slide = document.querySelectorAll('.portfolio-item'), // 1 слайд
         bat = document.querySelectorAll('.portfolio-btn'), // кнопки next and prev
-        dot = document.querySelectorAll('.dot'), //dots
+
         slider = document.querySelector('.portfolio-content'); //весь слайдер
 
-        let currentSlide = 0,
-            interval;
 
+
+        slider.insertAdjacentHTML("beforeend", `<ul class="portfolio-dots"></ul>`);
+        const portfolioDots = document.querySelector('.portfolio-dots');
+
+        for (let i = 0; i < slide.length ; i++ ){
+            console.log('i: ', i);
+            if ( i === 0){
+                portfolioDots.insertAdjacentHTML("afterbegin", `<li class="dot dot-active"></li>`);
+            } if ( i > 0){
+                portfolioDots.insertAdjacentHTML("beforeend", `<li class="dot"></li>`);
+            }
+        }
+
+        const dot = document.querySelectorAll('.dot'); //dots
+
+        let currentSlide = 0,
+        interval;
+
+        
         const prevSlide = (elem, index, strClass) => { //переключаем(скрываем) слайд с помощью удаление класса
             elem[index].classList.remove(strClass);
         };
@@ -278,7 +295,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
         startSlide(1500);
-
+        
      };
 
      slider ();
