@@ -47,7 +47,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 
-
 /*
     function countTimer(deadline){
 

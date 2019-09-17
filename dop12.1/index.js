@@ -1,4 +1,5 @@
 'use strict';
+// 12 задание в основном доп
 let data = new Date ();
 let text = document.querySelector('.text');
 
@@ -15,7 +16,6 @@ function dayPeriod (){
         return "Доброй ночи";
     }
 }
-
 
 
 function weekday() {
@@ -57,7 +57,23 @@ text.textContent = `
 ${dayPeriod ()}
 Сегодня: ${weekday()}
 Текущее время:${data.toLocaleTimeString('en')}  
-До нового года осталось ${Days()} дн.`
+До нового года осталось ${Days()} дн.`;
 
+// доп задание
 
+let ball = document.querySelector('.ball'),
+inputBall = document.querySelector('input');
+console.log(ball);
+console.log(inputBall);
 
+    let count = 0;
+
+    let ballLeft = function () {
+
+        count++ ;
+        ball.style.left = count + 'px';
+        setTimeout(ballLeft, 10);
+
+    };
+
+  let stopse = inputBall.addEventListener('click',ballLeft);
