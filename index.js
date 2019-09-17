@@ -2,7 +2,53 @@
 window.addEventListener('DOMContentLoaded', function(){
     'use sctrict';
 
+    
+    let timerHours = document.querySelector('#timer-hours'),
+    timerMinutes = document.querySelector('#timer-minutes'),
+    timerSeconds = document.querySelector('#timer-seconds');
 
+
+
+    function updateClock (){
+
+        let date = new Date(),
+        hoursUTC = date.getUTCHours(),
+        minutesUTC = date.getUTCMinutes(),
+        secondsUTC = date.getUTCSeconds();
+
+        let timerHoursUTC = 24 - hoursUTC,
+        timerMinutesUTC = 60 - minutesUTC,
+        timerSecondsUTC = 60 - secondsUTC;
+
+        if(timerHoursUTC >= 10){
+            timerHours.textContent = timerHoursUTC;
+        } else {
+            timerHours.textContent = '0' + timerHoursUTC;
+        }
+        if( timerMinutesUTC >= 10 ){
+            timerMinutes.textContent = timerMinutesUTC;
+        } else {
+            timerMinutes.textContent = '0' +  timerMinutesUTC;
+        }
+        if( timerSecondsUTC >= 10){
+            timerSeconds.textContent = timerSecondsUTC;
+        } else {
+            timerSeconds.textContent = '0' +  timerSecondsUTC;
+        }
+
+        if (timerHours.textContent > 0 || timerMinutes.textContent > 0 || timerSeconds.textContent > 0){
+            setInterval (updateClock, 1000);
+        }else {
+            setInterval (updateClock, 2000);
+        }
+    }
+    updateClock();
+
+
+
+
+
+/*
     function countTimer(deadline){
 
             let timerHours = document.querySelector('#timer-hours'),
@@ -73,4 +119,5 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 
     countTimer ('15 September 2019');
+*/
 });
