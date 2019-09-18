@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    countTimer('20 September 2019');
+    countTimer('25 September 2019');
 
     //Menu
 
@@ -74,6 +74,8 @@ window.addEventListener('DOMContentLoaded', function () {
             closeBtn = document.querySelector('.close-btn'),
             menuItems = menu.querySelectorAll('ul>li'),
             body = document.querySelector('body');
+
+
 
         const handlerMenu = () => {
             menu.classList.toggle('active-menu');
@@ -97,13 +99,55 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         );
 
-
         menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
+
+
 
     };
 
     toggleMenu();
 
+    //скролы плавные по кнопкам
+    const scrolls = () => {
+        const scrollServiceBlock = document.querySelector('a>img');
+        let scrInterval;
+
+        const scrollSB = () => {
+            let scrollNow = document.documentElement.scrollTop;
+            scrInterval = requestAnimationFrame (scrollSB);
+            scrollNow += 20;
+            if ( scrollNow <= 880){
+                document.documentElement.scrollTop = scrollNow;
+            }else{
+                cancelAnimationFrame(scrInterval);
+            }
+        };
+        scrollServiceBlock.addEventListener('click', function(){
+            scrInterval = requestAnimationFrame (scrollSB);
+        }); 
+
+    };
+
+    scrolls();
+
+/*
+    //скролы с меню
+    const scrollMenu = () =>{
+        const menu = document.querySelector('menu'),
+        btnMenu = menu.querySelectorAll('ul>li>a');
+
+        menu.addEventListener('click', (event) =>{
+            let target = event.target;
+            if ( target.classList.contains('')){
+                console.log(1);
+            }
+
+        });
+
+    };
+    
+    scrollMenu();
+    */
 
     //модальное окно popup
 
@@ -152,6 +196,9 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
+
+
     };
 
     togglePopUp();
@@ -301,13 +348,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-     //slider2
+     
 
 
 
 
 });
 /*
+//slider2
 class SliderCarousel{
 
     constructor({
