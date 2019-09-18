@@ -1,4 +1,5 @@
 'use strict';
+/*
 // 12 задание в основном доп
 let data = new Date ();
 let text = document.querySelector('.text');
@@ -58,22 +59,41 @@ ${dayPeriod ()}
 Сегодня: ${weekday()}
 Текущее время:${data.toLocaleTimeString('en')}  
 До нового года осталось ${Days()} дн.`;
-
+*/
 // доп задание
 
 let ball = document.querySelector('.ball'),
-inputBall = document.querySelector('input');
-console.log(ball);
-console.log(inputBall);
+inputBall = document.querySelector('input'),
+reset = document.querySelector('.reset');
 
-    let count = 0;
+    let flyInterval,
+    count = 0;
 
     let ballLeft = function () {
-
+        flyInterval = requestAnimationFrame(ballLeft);
         count++ ;
-        ball.style.left = count + 'px';
-        setTimeout(ballLeft, 10);
+        if (count < 1000) {
+            ball.style.left = count*2 + 'px';
+        }   else {
+        let flyInterval = requestAnimationFrame(ballLeft);
+        cancelAnimationFrame(flyInterval);
+        }
 
     };
 
-  let stopse = inputBall.addEventListener('click',ballLeft);
+    let animate = false;
+    inputBall.addEventListener('click',function(){
+        if (animate){
+            flyInterval = requestAnimationFrame(ballLeft);
+            animate = false;
+        } else {
+            animate = true;
+            cancelAnimationFrame(flyInterval);
+        }
+
+    });
+
+    reset.addEventListener('click', () => {
+        count = 0;
+        ball.style.left = '0px';
+    });
