@@ -202,7 +202,6 @@ window.addEventListener('DOMContentLoaded', function () {
         const portfolioDots = document.querySelector('.portfolio-dots');
 
         for (let i = 0; i < slide.length ; i++ ){
-            console.log('i: ', i);
             if ( i === 0){
                 portfolioDots.insertAdjacentHTML("afterbegin", `<li class="dot dot-active"></li>`);
             } if ( i > 0){
@@ -299,4 +298,98 @@ window.addEventListener('DOMContentLoaded', function () {
      };
 
      slider ();
+
+
+
+     //slider2
+
+
+
+
 });
+/*
+class SliderCarousel{
+
+    constructor({
+        main,
+        wrap,
+        next,
+        prev,
+        position = 0,
+    
+    }){
+        this.main = document.querySelector(main);
+        this.wrap = document.querySelector(wrap);
+        this.slides = document.querySelector(wrap).children;
+        this.next = document.querySelector(next);
+        this.prev = document.querySelector(prev);
+        this.options = {
+            position
+        };
+    }
+
+    init (){
+        this.addCloClass();
+        this.addStyle();
+
+        if(this.prev && this.next){
+            this.controlSlider();
+        } else {
+            this.addArrow();
+            this.controlSlider();
+        }
+    }
+
+    addCloClass(){
+        this.main.classList.add('glo-slider');
+        this.wrap.classList.add('glo-slider__wrap');
+        for (const item of this.slides){
+            item.classList.add('glo-slider__item');
+        }
+    }
+
+    addStyle(){
+        const style = document.createElement('style');
+        style.id = 'sliderCarousel-style';
+        style.textContent = `
+        .glo-slider{
+            overflow: hidden;
+
+        }
+        .glo-slider__wrap{
+            display: flex;
+            transition: transform 0.5s;
+            will-change: transform;
+        }
+
+        .glo-slider__item{
+            flex: 0 0 25%;
+            margin: auto 0;
+        }
+        `;
+
+        document.head.appendChild(style);
+    }
+
+    controlSlider(){
+        this.prev.addEventListener('click', this.prevSlider);
+        this.next.addEventListener('click', this.nextSlider);
+    }
+
+    prevSlider(){
+        --this.options.position;
+        console.log(this.options.position);
+    }
+
+    nextSlider(){
+        ++this.options.position;
+        console.log(this.options.position);
+    }
+
+    addArrow (){
+
+
+    }
+
+ }
+ */
