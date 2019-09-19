@@ -346,11 +346,38 @@ window.addEventListener('DOMContentLoaded', function () {
 
      slider ();
 
+    // валидация калькулятор
+    const valodCalc = () => {
+        const calcSquare = document.querySelector('.calc-square'),
+        calcCount = document.querySelector('.calc-count'),
+        calcDay = document.querySelector('.calc-day');
+        calcSquare.value = calcSquare.value.replace(/\d/g, '');
+        calcCount.value = calcCount.value.replace(/\d/g, '');
+        calcDay.value = calcDay.value.replace(/\d/g, '');
+    }; 
+    valodCalc (); 
 
+    //Наша команда смена фото
+    const commandPhoto = () => {
 
-     
+        let commandPhoto = document.querySelector('.command__photo'),
+        command = document.querySelector('#command');
+        /*
+        commandPhoto.getAttribute('data-img');
+        console.log('commandPhoto: ', commandPhoto);
+        
+        commandPhoto.addEventListener('mouseover', (event) =>{
 
+            if ( event.target.matches('.command__photo'){
 
+            };
+          
+
+        });
+        */
+    }
+
+    commandPhoto ();
 
 
 });
