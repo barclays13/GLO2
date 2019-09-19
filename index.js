@@ -358,26 +358,39 @@ window.addEventListener('DOMContentLoaded', function () {
     valodCalc (); 
 
     //Наша команда смена фото
-    const commandPhoto = () => {
+    const commandPhotos = () => {
+        const command = document.querySelector('#command'),
+        commandPhoto = command.querySelectorAll('#command>.container>.row>div>.command__photo');
 
-        let commandPhoto = document.querySelector('.command__photo'),
-        command = document.querySelector('#command');
-        /*
-        commandPhoto.getAttribute('data-img');
-        console.log('commandPhoto: ', commandPhoto);
-        
-        commandPhoto.addEventListener('mouseover', (event) =>{
+        for ( let key in commandPhoto){
+            if ( key = 0){
+                
+            }
+            console.log('key: ', commandPhoto[key]);
+            console.log('key: ', key);
+            let target = event.target;
 
-            if ( event.target.matches('.command__photo'){
+            
 
-            };
-          
+        }
 
+
+
+
+/*
+        commandPhoto.addEventListener('mouseenter', (event) => {
+            if (event.target = "")
+            event.target.src = event.target.dataset.img;
+            console.log('event.target: ', event.target);
         });
-        */
-    }
 
-    commandPhoto ();
+        commandPhoto.addEventListener('mouseleave', (event) => {
+            event.target.src = x;
+
+        });*/
+    };
+
+    commandPhotos ();
 
 
 });
