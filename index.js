@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //Timer
 
+    
     function countTimer(deadline) {
 
         let timerHours = document.querySelector('#timer-hours'),
@@ -63,11 +64,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
     }
-
     countTimer('25 September 2019');
 
     //Menu
-
     const toggleMenu = () => {
         const btnMenu = document.querySelector('.menu'),
             menu = document.querySelector('menu'),
@@ -104,7 +103,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
     };
-
     toggleMenu();
 
     //скролы плавные по кнопкам
@@ -127,30 +125,25 @@ window.addEventListener('DOMContentLoaded', function () {
         }); 
 
     };
-
     scrolls();
 
+        //скролы с меню
 /*
-    //скролы с меню
+
     const scrollMenu = () =>{
         const menu = document.querySelector('menu'),
         btnMenu = menu.querySelectorAll('ul>li>a');
-
         menu.addEventListener('click', (event) =>{
             let target = event.target;
             if ( target.classList.contains('')){
                 console.log(1);
             }
-
         });
-
     };
-    
     scrollMenu();
     */
 
     //модальное окно popup
-
     const togglePopUp = () => {
         const popup = document.querySelector('.popup'),
             popupContent = popup.querySelector('.popup-content'),
@@ -200,11 +193,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
     };
-
     togglePopUp();
 
     //табы
-     const tabs = () => {
+    const tabs = () => {
          const tabHeader = document.querySelector('.service-header'),
             tab = tabHeader.querySelectorAll('.service-header-tab'), 
             tabContent = document.querySelectorAll('.service-tab');
@@ -232,9 +224,8 @@ window.addEventListener('DOMContentLoaded', function () {
                         });
                     }
             });
-     };
+    };
      tabs ();
-
 
      //slider
      const slider = () => {
@@ -339,32 +330,42 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-
         startSlide(1500);
         
      };
-
      slider ();
+
 
     // валидация калькулятор
     const valodCalc = () => {
         const calcSquare = document.querySelector('.calc-square'),
         calcCount = document.querySelector('.calc-count'),
         calcDay = document.querySelector('.calc-day');
-        calcSquare.value = calcSquare.value.replace(/\d/g, '');
-        calcCount.value = calcCount.value.replace(/\d/g, '');
-        calcDay.value = calcDay.value.replace(/\d/g, '');
-    }; 
-    valodCalc (); 
 
-    
+        calcSquare.addEventListener('input', ()=>{
+            calcSquare.value = calcSquare.value.replace(/\[0-9]/g, "" );
+        });
+
+        calcCount.addEventListener('input', ()=>{
+   
+            calcCount.value = calcCount.value.replace(/\[0-9]/g, "" );
+        });
+
+        calcDay.addEventListener('input', ()=>{
+            calcDay.value = calcDay.value.replace(/\[0-9]/g, "" );
+        });
+    }; 
+    valodCalc();
+
     //Наша команда смена фото
     const commandPhotos = () => {
+        
         const command = document.querySelector('#command'),
         commandPhoto = command.querySelector('#command>.container>.row>div>.command__photo');
 
 
         const mouseOver = (event) => {
+            console.log('event: ', event);
             const srcImg = event.target.src,
             dataImg = event.target.dataset.img;
             
@@ -382,17 +383,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
         command.addEventListener('mouseover', (event) => {
             if(event.target.matches('img')){
-                mouseOver();
+                mouseOver(event);
             }
         });
 
         command.addEventListener('mouseout', (event) => {
             if(event.target.matches('img')){
-                mouseOut();
+                mouseOut(event);
             }
         });
     };      
-
     commandPhotos ();
 
     //калькулятор
@@ -420,7 +420,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 dayValue *= 1.5;
             } 
             if (typeValue && squareValue){
-                total = price * typeValue * squareValue * countValue * dayValue;
+                total = Math.floor(price * typeValue * squareValue * countValue * dayValue);
             } else {
                 total = 0;
             }
@@ -428,6 +428,7 @@ window.addEventListener('DOMContentLoaded', function () {
         };
 
         calcBlock.addEventListener('change', (event) => {
+
             const target = event.target;
 /*          
             if ( target.matches('.calc-type') || target.matches('.calc-square') || 
@@ -442,99 +443,10 @@ window.addEventListener('DOMContentLoaded', function () {
 */
             if ( target.matches('select') || target.matches('input')){
                 countSum ();
-            }
-
+            }   
+            
         });
 
     };
     calc (100);
-
-
 });
-/*
-//slider2
-class SliderCarousel{
-
-    constructor({
-        main,
-        wrap,
-        next,
-        prev,
-        position = 0,
-    
-    }){
-        this.main = document.querySelector(main);
-        this.wrap = document.querySelector(wrap);
-        this.slides = document.querySelector(wrap).children;
-        this.next = document.querySelector(next);
-        this.prev = document.querySelector(prev);
-        this.options = {
-            position
-        };
-    }
-
-    init (){
-        this.addCloClass();
-        this.addStyle();
-
-        if(this.prev && this.next){
-            this.controlSlider();
-        } else {
-            this.addArrow();
-            this.controlSlider();
-        }
-    }
-
-    addCloClass(){
-        this.main.classList.add('glo-slider');
-        this.wrap.classList.add('glo-slider__wrap');
-        for (const item of this.slides){
-            item.classList.add('glo-slider__item');
-        }
-    }
-
-    addStyle(){
-        const style = document.createElement('style');
-        style.id = 'sliderCarousel-style';
-        style.textContent = `
-        .glo-slider{
-            overflow: hidden;
-
-        }
-        .glo-slider__wrap{
-            display: flex;
-            transition: transform 0.5s;
-            will-change: transform;
-        }
-
-        .glo-slider__item{
-            flex: 0 0 25%;
-            margin: auto 0;
-        }
-        `;
-
-        document.head.appendChild(style);
-    }
-
-    controlSlider(){
-        this.prev.addEventListener('click', this.prevSlider);
-        this.next.addEventListener('click', this.nextSlider);
-    }
-
-    prevSlider(){
-        --this.options.position;
-        console.log(this.options.position);
-    }
-
-    nextSlider(){
-        ++this.options.position;
-        console.log(this.options.position);
-    }
-
-    addArrow (){
-
-
-    }
-
- }
- */
