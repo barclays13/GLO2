@@ -296,7 +296,7 @@ window.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             let target = event.target;
 
-            if(!target.matches('.portfolio-btn, .dot')){ //проверяем клики по кнопкам prev and next and dot (если на них то выполняет ниже)
+            if(!target.matches('.portfolio-btn, .dot')){ //проверяем клики по кнопкам prev and next and dot
                 return;
             }
 
@@ -357,38 +357,41 @@ window.addEventListener('DOMContentLoaded', function () {
     }; 
     valodCalc (); 
 
+    
     //Наша команда смена фото
     const commandPhotos = () => {
         const command = document.querySelector('#command'),
-        commandPhoto = command.querySelectorAll('#command>.container>.row>div>.command__photo');
+        commandPhoto = command.querySelector('#command>.container>.row>div>.command__photo');
 
-        for ( let key in commandPhoto){
-            if ( key = 0){
-                
-            }
-            console.log('key: ', commandPhoto[key]);
-            console.log('key: ', key);
-            let target = event.target;
 
+        const mouseOver = () => {
+            const srcImg = event.target.src,
+            dataImg = event.target.dataset.img;
             
-
-        }
-
-
-
-
-/*
-        commandPhoto.addEventListener('mouseenter', (event) => {
-            if (event.target = "")
             event.target.src = event.target.dataset.img;
-            console.log('event.target: ', event.target);
+            event.target.dataset.img = srcImg;
+        };
+
+        const mouseOut = () => {
+            const srcImg = event.target.src,
+            dataImg = event.target.dataset.img;
+            
+            event.target.src = event.target.dataset.img;
+            event.target.dataset.img = srcImg;
+        };
+
+        command.addEventListener('mouseover', (event) => {
+            if(event.target.matches('img')){
+                mouseOver();
+            }
         });
 
-        commandPhoto.addEventListener('mouseleave', (event) => {
-            event.target.src = x;
-
-        });*/
-    };
+        command.addEventListener('mouseout', (event) => {
+            if(event.target.matches('img')){
+                mouseOut();
+            }
+        });
+    };      
 
     commandPhotos ();
 
