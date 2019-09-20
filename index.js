@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', function () {
             menu.classList.toggle('active-menu');
         };
         
-        body.addEventListener('click',() => {
+        body.addEventListener('click',(event) => {
                 let target = event.target;
 
                 if (menu.classList.contains('active-menu')){ // клик мимо меню, оно закрывается
@@ -364,7 +364,7 @@ window.addEventListener('DOMContentLoaded', function () {
         commandPhoto = command.querySelector('#command>.container>.row>div>.command__photo');
 
 
-        const mouseOver = () => {
+        const mouseOver = (event) => {
             const srcImg = event.target.src,
             dataImg = event.target.dataset.img;
             
@@ -372,7 +372,7 @@ window.addEventListener('DOMContentLoaded', function () {
             event.target.dataset.img = srcImg;
         };
 
-        const mouseOut = () => {
+        const mouseOut = (event) => {
             const srcImg = event.target.src,
             dataImg = event.target.dataset.img;
             
