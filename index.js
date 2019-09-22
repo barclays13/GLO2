@@ -16,50 +16,36 @@ window.addEventListener('DOMContentLoaded', function () {
             let dateStop = new Date(deadline).getTime(),
                 dateNow = new Date().getTime(),
                 timeRemaining = (dateStop - dateNow) / 1000,
-                seconds = Math.floor(timeRemaining % 60),
-                minutes = Math.floor((timeRemaining / 60) % 60),
-                hours = Math.floor(timeRemaining / 60 / 60) % 24;
-
+                seconds = updateClock(Math.floor(timeRemaining % 60)),
+                minutes = updateClock(Math.floor((timeRemaining / 60) % 60)),
+                hours = updateClock(Math.floor(timeRemaining / 60 / 60) % 24);
             return { timeRemaining, hours, minutes, seconds };
-
         }
 
+        function updateClock(number) {
+            if (number < 10) {
+                return '0' + number;
+            } else {
+                return number;
+            }
+        }
 
-        function updateClock() {
-
-            let timer = getTimeRemaining();
-
-            if (timer.hours >= 10) {
+        const viewTimer = () =>{
+                let timer = getTimeRemaining();
+                 // проверка на отрицательное время
+            if (timer.timeRemaining > 0){
                 timerHours.textContent = timer.hours;
-            } else {
-                timerHours.textContent = '0' + timer.hours;
-            }
-
-            if (timer.minutes >= 10) {
                 timerMinutes.textContent = timer.minutes;
-            } else {
-                timerMinutes.textContent = '0' + timer.minutes;
-            }
-
-            if (timer.seconds >= 10) {
                 timerSeconds.textContent = timer.seconds;
-            } else {
-                timerSeconds.textContent = '0' + timer.seconds;
-            }
-
-
-            // проверка на отрицательное время
-            if (timer.timeRemaining > 0) {
-                setInterval(updateClock, 1000);
+                setInterval(viewTimer, 1000);
             } else {
                 timerHours.textContent = "00";
                 timerMinutes.textContent = "00";
                 timerSeconds.textContent = "00";
                 timerNumbers.style.color = 'red';
             }
-
-        }
-
+            };
+            viewTimer();
         updateClock();
 
 
@@ -68,40 +54,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //Menu
     const toggleMenu = () => {
-        const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu'),
-            closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li'),
-            body = document.querySelector('body');
-
-
-
-        const handlerMenu = () => {
-            menu.classList.toggle('active-menu');
-        };
-        
-        body.addEventListener('click',(event) => {
-                let target = event.target;
-
-                if (menu.classList.contains('active-menu')){ // клик мимо меню, оно закрывается
-                    target = target.closest('menu');
-                    if (!target){
-                        handlerMenu();
-                    }
-                    target = event.target;
-                } if (target.closest('.menu')){ //открываем меню
-                handlerMenu();
-                } if (target.classList.contains('close-btn')){ //закрываем меню на "крест"
-                    handlerMenu();
-                } 
-                
+        const menu = document.querySelector('menu');
+        document.body.addEventListener('click', (event) => {
+            
+            let target = event.target;
+            console.log('!target.closest: ', !target.closest('.active-menu'));
+            if (!target.closest('.active-menu') || target.closest('.close-btn') || target.href ){
+                menu.classList.remove('active-menu');
+            } if (target.closest('.menu')){
+                menu.classList.add('active-menu');
             }
-        );
-
-        menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
-
-
-
+        });
     };
     toggleMenu();
 
@@ -126,22 +89,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     };
     scrolls();
-
-        //скролы с меню
-/*
-
-    const scrollMenu = () =>{
-        const menu = document.querySelector('menu'),
-        btnMenu = menu.querySelectorAll('ul>li>a');
-        menu.addEventListener('click', (event) =>{
-            let target = event.target;
-            if ( target.classList.contains('')){
-                console.log(1);
-            }
-        });
-    };
-    scrollMenu();
-    */
 
     //модальное окно popup
     const togglePopUp = () => {
@@ -345,51 +292,33 @@ window.addEventListener('DOMContentLoaded', function () {
         calcSquare.addEventListener('input', ()=>{
             calcSquare.value = calcSquare.value.replace(/\[0-9]/g, "" );
         });
-
+        
         calcCount.addEventListener('input', ()=>{
    
-            calcCount.value = calcCount.value.replace(/\[0-9]/g, "" );
+            calcCount.value = calcCount.value.replace(/\D/g, "" );
         });
 
         calcDay.addEventListener('input', ()=>{
-            calcDay.value = calcDay.value.replace(/\[0-9]/g, "" );
+            calcDay.value = calcDay.value.replace(/\D/g, "" );
         });
     }; 
     valodCalc();
 
     //Наша команда смена фото
     const commandPhotos = () => {
-        
-        const command = document.querySelector('#command'),
-        commandPhoto = command.querySelector('#command>.container>.row>div>.command__photo');
-
-
-        const mouseOver = (event) => {
-            console.log('event: ', event);
-            const srcImg = event.target.src,
-            dataImg = event.target.dataset.img;
-            
-            event.target.src = event.target.dataset.img;
-            event.target.dataset.img = srcImg;
-        };
-
-        const mouseOut = (event) => {
-            const srcImg = event.target.src,
-            dataImg = event.target.dataset.img;
-            
-            event.target.src = event.target.dataset.img;
-            event.target.dataset.img = srcImg;
-        };
+        const command = document.querySelector('#command');
+        let srcImage;
 
         command.addEventListener('mouseover', (event) => {
-            if(event.target.matches('img')){
-                mouseOver(event);
+            if (event.target.src){
+                srcImage = event.target.src;
+                event.target.src = event.target.dataset.img;
             }
         });
 
         command.addEventListener('mouseout', (event) => {
-            if(event.target.matches('img')){
-                mouseOut(event);
+            if (event.target.src){
+                event.target.src = srcImage;
             }
         });
     };      
