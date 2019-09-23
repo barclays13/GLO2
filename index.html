@@ -415,7 +415,36 @@
         </div>
     </div>
 
+<script src="js/validator.js"></script>
+
+    <script>
+        const valid = new Validator({
+            selector:"#form1",
+            pattern: {
+                //phone: /^\+380\d{7}$/,
+                //zip: /\d{5.6}/
+                text: /^[А-ЯЁ][а-яё]*$/
+            },
+            method: {
+                'text': [
+                    ['notEmpty'],
+                    ['pattern', 'text'],
+                ],
+                'email': [
+                    ['notEmpty'],
+                    ['pattern', 'email'],
+                ],
+                'tel': [
+                    ['notEmpty'],
+                    ['pattern', 'phone'],
+                ]
+            }
+        });
+        valid.init();
+    </script>
+
 <script src= 'index.js' ></script>
+
 
 </body>
 </html>

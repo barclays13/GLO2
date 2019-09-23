@@ -86,7 +86,6 @@ window.addEventListener('DOMContentLoaded', function () {
         scrollServiceBlock.addEventListener('click', function(){
             scrInterval = requestAnimationFrame (scrollSB);
         }); 
-
     };
     scrolls();
 
