@@ -12,7 +12,8 @@ class Validator {
     init (){
         this.applyStyle();
         this.setPattern();
-        this.elementsForm.forEach(elem => elem.addEventListener( 'change', this.checkIt.bind(this)));
+        this.elementsForm.forEach(elem => elem.addEventListener('change', this.checkIt.bind(this))); 
+        console.log(this.elementsForm);
         this.form.addEventListener('submit', e => {
             e.preventDefault();
             this.elementsForm.forEach(elem => this.checkIt({target: elem}));
@@ -22,19 +23,7 @@ class Validator {
         });
     }
 
-    checkIt (event){
-        const target = event.target;
-        if (this.isValid(target)){
-            this.showSuccess(target);
-            this.error.delete(target);
-        } else {
-            this.showError(target);
-            this.error.add(target);
-        }
-        console.log(this.error);
-    }
-
-
+    //валидация
     isValid (elem){
         const validatorMethod = {
             notEmpty(elem){
@@ -58,10 +47,23 @@ class Validator {
         return true;
     }
 
+    // запускает проверку на валидность
+    checkIt (event){
+        const target = event.target;
+        if (this.isValid(target)){
+            this.showSuccess(target);
+            this.error.delete(target);
+        } else {
+            this.showError(target);
+            this.error.add(target);
+        }
+        console.log(this.error);
+    }
+
     showError (elem){
         elem.classList.remove('success');
         elem.classList.add('error');
-        if (elem.nextElementSibling && elem.nextElementSibling.classList.contains('validator-error')){
+        if (elem.nextElementSibling && elem.nextElementSibling.classList.contains('validator-error')){ // проверка на 1 выдачу текста об ошибке
             return;
         }
         const errorDiv = document.createElement('div');
@@ -91,18 +93,18 @@ class Validator {
                 font-size: 12px;
                 font-family: sans-serif;
                 color: red
-            }
-        `;
+            }`;
         document.head.appendChild(style);
     }
 
     setPattern() {
         if (!this.pattern.phone){
-            this.pattern.phone = /^\+?[375]([-()]*\d){11,}$/;
+            this.pattern.phone = /^\+380\d{7}$/;
         }
 
         if (!this.pattern.email){
             this.pattern.email = /^\w+@\w+\.\w{2,}$/;
         }
+
     }
 }

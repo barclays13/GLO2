@@ -418,29 +418,89 @@
 <script src="js/validator.js"></script>
 
     <script>
-        const valid = new Validator({
+        const validForm1 = new Validator({
             selector:"#form1",
             pattern: {
-                //phone: /^\+380\d{7}$/,
-                //zip: /\d{5.6}/
-                text: /^[А-ЯЁ][а-яё]*$/
+                phone: /^\+?[375]([-()]*\d){11,}$/,
+                email: /^\w+@\w+\.\w{2,}$/,
+                name: /^[А-ЯЁ][а-яё]*$/
             },
             method: {
-                'text': [
-                    ['notEmpty'],
-                    ['pattern', 'text'],
-                ],
-                'email': [
+                'form1-email': [
                     ['notEmpty'],
                     ['pattern', 'email'],
                 ],
-                'tel': [
+                'form1-name': [
+                    ['notEmpty'],
+                    ['pattern', 'name'],
+                ],
+                'form1-phone': [
                     ['notEmpty'],
                     ['pattern', 'phone'],
                 ]
             }
         });
-        valid.init();
+        validForm1.init();
+    </script>
+
+
+
+<script>
+        const validForm2 = new Validator({
+            selector:"#form2",
+            pattern: {
+                phone: /^\+?[375]([-()]*\d){11,}$/,
+                email: /^\w+@\w+\.\w{2,}$/,
+                name: /^[А-ЯЁ][а-яё]*$/,
+                message: /[А-ЯЁа-яё0-9\s]/
+            },
+            method: {
+                'form2-email': [
+                    ['notEmpty'],
+                    ['pattern', 'email'],
+                ],
+                'form2-name': [
+                    ['notEmpty'],
+                    ['pattern', 'name'],
+                ],
+                'form2-message': [
+                    ['notEmpty'],
+                    ['pattern', 'message'],
+                ],
+                'form2-phone': [
+                    ['notEmpty'],
+                    ['pattern', 'phone'],
+                ]
+
+            }
+        });
+        validForm2.init();
+    </script>
+
+    <script>
+        const validForm3 = new Validator({
+            selector:"#form3",
+            pattern: {
+                phone: /^\+?[375]([-()]*\d){11,}$/,
+                email: /^\w+@\w+\.\w{2,}$/,
+                name: /^[А-ЯЁ][а-яё]*$/
+            },
+            method: {
+                'form3-email': [
+                    ['notEmpty'],
+                    ['pattern', 'email'],
+                ],
+                'form3-name': [
+                    ['notEmpty'],
+                    ['pattern', 'name'],
+                ],
+                'form3-phone': [
+                    ['notEmpty'],
+                    ['pattern', 'phone'],
+                ]
+            }
+        });
+        validForm3.init();
     </script>
 
 <script src= 'index.js' ></script>
