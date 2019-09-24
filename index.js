@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //Timer
 
-    
+    /*
     function countTimer(deadline) {
 
         let timerHours = document.querySelector('#timer-hours'),
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
     countTimer('25 September 2019');
-
+*/
     //Menu
     const toggleMenu = () => {
         const menu = document.querySelector('menu');
@@ -377,4 +377,108 @@ window.addEventListener('DOMContentLoaded', function () {
 
     };
     calc (100);
+
+    //sen-ajax-form
+
+    const sendForm = () => {
+        const errorMessage = 'Что-то пошло не так...',
+        loadMessage = 'Загрузка...',
+        successMessasge = 'Спасибо, мы скоро с вами свяжемся!';
+
+        const form1 = document.getElementById('form1'),
+         form2 = document.getElementById('form2'),
+         form3 = document.getElementById('form3');
+
+        const statusMessage = document.createElement('div');
+        statusMessage.style.cssText = 'font-size: 2rem';
+
+        form1.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form1.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
+            const formData = new FormData(form1);
+            let body = {};
+//            for (let val of formData.entries()){
+//                body[val[0]] = val [1];
+//            }
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body, 
+                ()=> {
+                statusMessage.textContent = successMessasge;
+                const formInput = form1.querySelectorAll('input').forEach((elem)=> elem.value = '');
+                }, 
+                (error) => {
+                statusMessage.textContent = errorMessage;
+                console.error(error);
+            });
+        });
+
+        form2.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form2.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
+            const formData = new FormData(form2);
+            let body = {};
+//            for (let val of formData.entries()){
+//                body[val[0]] = val [1];
+//            }
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body, 
+                ()=> {
+                statusMessage.textContent = successMessasge;
+                const formInput = form2.querySelectorAll('input').forEach((elem)=> elem.value = '');
+                }, 
+                (error) => {
+                statusMessage.textContent = errorMessage;
+                console.error(error);
+            });
+        });
+
+        form3.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form3.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
+            const formData = new FormData(form3);
+            let body = {};
+//            for (let val of formData.entries()){
+//                body[val[0]] = val [1];
+//            }
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body, 
+                ()=> {
+                statusMessage.textContent = successMessasge;
+                const formInput = form3.querySelectorAll('input').forEach((elem)=> elem.value = '');
+                }, 
+                (error) => {
+                statusMessage.textContent = errorMessage;
+                console.error(error);
+            });
+        });
+
+        const postData = (body, outputData, errorData) => {
+            const request = new XMLHttpRequest();
+            request.addEventListener('readystatechange', ()=> {
+                if (request.readyState !== 4){
+                    return;
+                } 
+                if (request.status === 200){
+                    outputData();
+                } else {
+                    errorData(request.status);
+                }
+            });
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(body));
+        };
+    };
+    sendForm ();
+
+
 });

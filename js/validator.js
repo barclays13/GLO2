@@ -13,7 +13,6 @@ class Validator {
         this.applyStyle();
         this.setPattern();
         this.elementsForm.forEach(elem => elem.addEventListener('change', this.checkIt.bind(this))); 
-        console.log(this.elementsForm);
         this.form.addEventListener('submit', e => {
             e.preventDefault();
             this.elementsForm.forEach(elem => this.checkIt({target: elem}));
@@ -57,7 +56,6 @@ class Validator {
             this.showError(target);
             this.error.add(target);
         }
-        console.log(this.error);
     }
 
     showError (elem){
