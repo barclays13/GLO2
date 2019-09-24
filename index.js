@@ -56,9 +56,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const toggleMenu = () => {
         const menu = document.querySelector('menu');
         document.body.addEventListener('click', (event) => {
-            
+            validForm();
             let target = event.target;
-            console.log('!target.closest: ', !target.closest('.active-menu'));
             if (!target.closest('.active-menu') || target.closest('.close-btn') || target.href ){
                 menu.classList.remove('active-menu');
             } if (target.closest('.menu')){
@@ -172,7 +171,7 @@ window.addEventListener('DOMContentLoaded', function () {
             });
     };
      tabs ();
-
+/*
      //slider
      const slider = () => {
         const slide = document.querySelectorAll('.portfolio-item'), // 1 слайд
@@ -281,9 +280,9 @@ window.addEventListener('DOMContentLoaded', function () {
      };
      slider ();
 
-
+*/
     // валидация калькулятор
-    const valodCalc = () => {
+    const validCalc = () => {
         const calcSquare = document.querySelector('.calc-square'),
         calcCount = document.querySelector('.calc-count'),
         calcDay = document.querySelector('.calc-day');
@@ -301,7 +300,7 @@ window.addEventListener('DOMContentLoaded', function () {
             calcDay.value = calcDay.value.replace(/\D/g, "" );
         });
     }; 
-    valodCalc();
+    validCalc();
 
     //Наша команда смена фото
     const commandPhotos = () => {
@@ -377,6 +376,29 @@ window.addEventListener('DOMContentLoaded', function () {
 
     };
     calc (100);
+        // валидация форм
+/*
+
+    const validForm = () => {
+        const form1Name = document.getElementById('form1-name'),
+        form1Email = document.getElementById('form1-email'),
+        form1Phone = document.getElementById('form1-phone');
+
+        form1Name.addEventListener('input', ()=>{
+            form1Name.value = form1Name.value.replace(/^[А-ЯЁ][а-яё]*$/g, "" );
+        });
+        
+        form1Email.addEventListener('input', ()=>{
+   
+            form1Email.value = form1Email.value.replace(/^\w+@\w+\.\w{2,}$/g, "" );
+        });
+
+        form1Phone.addEventListener('input', ()=>{
+            form1Phone.value = form1Phone.value.replace(/^\+?[375]([-()]*\d){11,}$/g, "" );
+        });
+    }; 
+    validForm();    
+*/
 
     //sen-ajax-form
 
@@ -479,6 +501,5 @@ window.addEventListener('DOMContentLoaded', function () {
         };
     };
     sendForm ();
-
 
 });
