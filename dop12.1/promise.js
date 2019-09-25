@@ -26,31 +26,38 @@ const getData = (url) => {
 
 
 const outputPhotos = (data)=>{ // получаем объект по ссылке 'urlPhotos' и обрабатываем его
-    const random = Math.floor(Math.random() * data.length); 
-    const obj = data[random];   // в obj помещаем случайный полученный объект
-    output.innerHTML = `<h4>${obj.title}</h4>
-                        <img src="${obj.thumbnailUrl}" alt="${obj.title}">`;
-    console.log('random: ', obj);
+    console.log('random: ', data);
+    data.forEach((item) => {
+        output.insertAdjacentHTML ('beforebegin', 
+            `<h4>${item.title}</h4>
+            <img src="${item.thumbnailUrl}" alt="${item.title}">`);
+    });
+
+    
 };
 
 const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
-/*
+
 const oneImg = getData('https://jsonplaceholder.typicode.com/photos/1'),
         twoImg = getData('https://jsonplaceholder.typicode.com/photos/2');
 
 
+
+Promise.all([oneImg, twoImg])
+    .then(outputPhotos)
+    .catch(error => console.error(error));
+/*
 oneImg
     .then(outputPhotos)
     .catch(error => console.error(error));
 
-    twoImg
+twoImg
     .then(outputPhotos)
     .catch(error => console.error(error));
 
         //Promise.all([oneImg, twoImg])
- */
 
 getData (urlPhotos)
     .then(outputPhotos)
     .catch(error => console.error(error));
-   
+    */
