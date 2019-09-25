@@ -301,25 +301,21 @@ window.addEventListener('DOMContentLoaded', function () {
 
         document.querySelectorAll('.form-phone').forEach((element) => {
             element.addEventListener('input', () => {
-                console.log(element);
                 element.value = element.value.replace(/[^0-9+]/, '');
             });
         });
         document.getElementsByName('user_name').forEach((element) => {
             element.addEventListener('input', () => {
-                console.log(element);
                 element.value = element.value.replace(/[^а-яё]/iu, '');
             });
         });
         document.getElementsByName('user_message').forEach((element) => {
             element.addEventListener('input', () => {
-                console.log(element);
                 element.value = element.value.replace(/[^а-яё\s]/iu, '');
             });
         });
         document.getElementsByName('user_email').forEach((element) => {
             element.addEventListener('input', () => {
-                console.log(element);
                 element.value = element.value.replace(/[^a-z0-9+\@\.]/, '');
             });
         });
@@ -429,15 +425,18 @@ window.addEventListener('DOMContentLoaded', function () {
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
-                ()=> {
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body)
+                .then(()=> {
                 statusMessage.textContent = successMessasge;
                 const formInput = form1.querySelectorAll('input').forEach((elem)=> elem.value = '');
-                }, 
-                (error) => {
+                })
+                .catch((error) => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
-            });
+                });
         });
 
         form2.addEventListener('submit', (event) => {
@@ -452,15 +451,18 @@ window.addEventListener('DOMContentLoaded', function () {
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
-                ()=> {
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body)
+                .then(()=> {
                 statusMessage.textContent = successMessasge;
                 const formInput = form2.querySelectorAll('input').forEach((elem)=> elem.value = '');
-                }, 
-                (error) => {
+                })
+                .catch((error) => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
-            });
+                });
         });
 
         form3.addEventListener('submit', (event) => {
@@ -482,9 +484,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch((error) => {
                 statusMessage.textContent = errorMessage;
-                console.error(error)
-                } 
-            );
+                console.error(error);
+                });
         });
 
         const postData = (body) => {
