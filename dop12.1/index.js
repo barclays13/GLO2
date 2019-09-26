@@ -25,25 +25,24 @@ let showDate = function (){
             switch (date.getDay()) {
                 case 0:
                     return "Воскресенье";
-                    break;
+                    
                 case 1:
                     return "Понедельник";
-                    break;
+                    
                 case 2:
                     return "Вторник";
-                    break;
+                
                 case 3:
                     return "Среда";
-                    break;
+                
                 case 4:
                     return "Четверг";
-                    break;
+                    
                 case 5:
                     return "Пятница";
-                    break;
                 case 6:
                     return "Суббота";
-                    break;
+                
 
                 default:
                     break;
@@ -57,9 +56,7 @@ let showDate = function (){
         text.innerText = ` 
         ${dayPeriod ()}         Сегодня: ${weekday()} 
         Текущее время:${date.toLocaleTimeString()}  
-        До нового года осталось ${Days()} дн.`
-
-}
+        До нового года осталось ${Days()} дн.`};
 
 
 
