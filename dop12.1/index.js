@@ -1,7 +1,7 @@
 'use strict';
 
 
-
+/*
 let showDate = function (){
 
         let date = new Date ();
@@ -61,3 +61,11 @@ let showDate = function (){
 
 
 setInterval( showDate , 1000);
+*/
+
+
+document.addEventListener('click', (event)=>{
+    if (event.target.tagName === 'INPUT') {
+        console.log("1");
+    }
+});
