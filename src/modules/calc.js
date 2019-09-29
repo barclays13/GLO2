@@ -30,23 +30,10 @@ const calc = (price = 100) => {
     };
 
     calcBlock.addEventListener('change', (event) => {
-
         const target = event.target;
-/*          
-        if ( target.matches('.calc-type') || target.matches('.calc-square') || 
-            target.matches('.calc-count') || target.matches('.calc-day')){
-            console.log(target);
-        }
-
-        if( target === calcType || target === calcSquare || 
-            target === calcCount || target === calcDay){
-                console.log(target);
-        }
-*/
         if ( target.matches('select') || target.matches('input')){
             countSum ();
         }   
-        
     });
 
 };
