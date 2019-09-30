@@ -1,0 +1,30 @@
+{
+  "name": "3dGlo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cross-env": "^6.0.0"
+  },
+  "devDependencies": {
+    "path": "^0.12.7",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barclays13/GLO2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barclays13/GLO2/issues"
+  },
+  "homepage": "https://github.com/barclays13/GLO2#readme"
+}
