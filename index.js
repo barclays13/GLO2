@@ -306,12 +306,12 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         document.getElementsByName('user_name').forEach((element) => {
             element.addEventListener('input', () => {
-                element.value = element.value.replace(/[^а-яё]/iu, '');
+                element.value = element.value.replace(/[^а-яё]/i, '');
             });
         });
         document.getElementsByName('user_message').forEach((element) => {
             element.addEventListener('input', () => {
-                element.value = element.value.replace(/[^а-яё\s]/iu, '');
+                element.value = element.value.replace(/[^а-яё\s]/i, '');
             });
         });
         document.getElementsByName('user_email').forEach((element) => {
@@ -360,8 +360,10 @@ window.addEventListener('DOMContentLoaded', function () {
             const typeValue = calcType.options[calcType.selectedIndex].value,
             squareValue = +calcSquare.value;
 
-            if (calcCount.value > 1){
+            if (calcCount.value >= 1){
                 countValue += (calcCount.value - 1)  / 10;
+            } else {
+                countValue = 0;
             }
             if (calcDay.value && calcDay.value < 5){
                 dayValue *= 2;
