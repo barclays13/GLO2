@@ -1,4 +1,5 @@
 'use sctrict';
+import 'nodelist-foreach-polyfill';
 
 import countTimer from './modules/countTimer';
 import toggleMenu from './modules/toggleMenu';
@@ -11,7 +12,9 @@ import commandPhotos from './modules/commandPhotos';
 import calc from './modules/calc';
 import sendForm from './modules/sendForm';
 
-//Timer
+
+
+//Timerq
 countTimer('30 September 2019');
 //Menu
 toggleMenu();
