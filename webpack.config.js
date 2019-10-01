@@ -9,5 +9,9 @@
         path: path.resolve(__dirname,'./dist'),
         filename: "[name].js",
         publicPath: '/dist'
+    },
+    devServer: {
+        overlay: true
     }
+    
  };
