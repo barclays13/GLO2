@@ -28,7 +28,7 @@ const sendForm = () => {
             postData(body)
             .then((response) => {
                 if (response.status !== 200) {
-                   // throw new Error ('Status network is not 200');
+                    throw new Error ('Status  network not 200');
                 }
                 statusMessage.textContent = successMessasge;
                 const formInput = elem.querySelectorAll('input').forEach((elem2)=> elem2.value = '');

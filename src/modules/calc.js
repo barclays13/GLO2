@@ -13,8 +13,10 @@ const calc = (price = 100) => {
         const typeValue = calcType.options[calcType.selectedIndex].value,
         squareValue = +calcSquare.value;
 
-        if (calcCount.value > 1){
+        if (calcCount.value >= 1){
             countValue += (calcCount.value - 1)  / 10;
+        } else {
+            countValue = 0;
         }
         if (calcDay.value && calcDay.value < 5){
             dayValue *= 2;

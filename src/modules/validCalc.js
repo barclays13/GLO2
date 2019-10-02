@@ -23,17 +23,17 @@ const validCalc = () => {
     });
     document.getElementsByName('user_name').forEach((element) => {
         element.addEventListener('input', () => {
-            element.value = element.value.replace(/[^а-яё]/iu, '');
+            element.value = element.value.replace(/[^а-яё]/i, '');
         });
     });
     document.getElementsByName('user_message').forEach((element) => {
         element.addEventListener('input', () => {
-            element.value = element.value.replace(/[^а-яё\s]/iu, '');
+            element.value = element.value.replace(/[^а-яё\s]/i, '');
         });
     });
     document.getElementsByName('user_email').forEach((element) => {
         element.addEventListener('input', () => {
-            element.value = element.value.replace(/[^a-z0-9+\@\.]/, '');
+            element.value = element.value.replace(/[^a-z0-9+\@\.]/i, '');
         });
     });
 }; 
